@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cadrr6iwbrs1w"]
+
+[ext_resource type="Texture2D" uid="uid://d0jkucmgo4t2y" path="res://assert/status.png" id="1_12net"]
+[ext_resource type="Script" path="res://scripts/texturebar.gd" id="2_ff41s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2ysj"]
+atlas = ExtResource("1_12net")
+region = Rect2(127, 199, 412, 20)
+
+[node name="TexturesBar" type="TextureProgressBar"]
+offset_right = 412.0
+offset_bottom = 20.0
+value = 32.0
+texture_progress = SubResource("AtlasTexture_b2ysj")
+script = ExtResource("2_ff41s")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="changed" from="." to="." method="_on_changed"]
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

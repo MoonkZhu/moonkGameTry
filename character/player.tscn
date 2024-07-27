@@ -1,47 +1,36 @@
 [gd_scene load_steps=7 format=3 uid="uid://cj7k0s6r4v6ig"]
 
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_3s4xl"]
 [ext_resource type="Texture2D" uid="uid://b1ebpmkd2jg2m" path="res://brackeys_platformer_assets/sprites/knight.png" id="1_fygvx"]
+[ext_resource type="Animation" uid="uid://vet3yllrspi0" path="res://animation/idel.res" id="1_hegvo"]
+[ext_resource type="Animation" uid="uid://cuhxf03hcb0wt" path="res://animation/run.res" id="3_poc40"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mo0q0"]
-atlas = ExtResource("1_fygvx")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_h0xrg"]
+radius = 5.88235
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lkavc"]
-atlas = ExtResource("1_fygvx")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_563fd"]
+_data = {
+"idel": ExtResource("1_hegvo"),
+"run": ExtResource("3_poc40")
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ny8oy"]
-atlas = ExtResource("1_fygvx")
-region = Rect2(64, 0, 32, 32)
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_3s4xl")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oehm2"]
-atlas = ExtResource("1_fygvx")
-region = Rect2(96, 0, 32, 32)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.96046e-08, 1)
+scale = Vector2(1.07701, -0.832593)
+shape = SubResource("CircleShape2D_h0xrg")
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_x7t5w"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mo0q0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lkavc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ny8oy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oehm2")
-}],
-"loop": true,
-"name": &"idel",
-"speed": 10.0
-}]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_563fd")
+}
 
-[node name="player" type="Node2D"]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(282, 177)
-sprite_frames = SubResource("SpriteFrames_x7t5w")
-animation = &"idel"
-autoplay = "idel"
+[node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer"]
+texture = ExtResource("1_fygvx")
+hframes = 8
+vframes = 2
+frame = 15
+region_enabled = true
+region_rect = Rect2(0, 64, 256, 64)

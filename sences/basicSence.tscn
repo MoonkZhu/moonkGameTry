@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://d0a5smwyul6jb" path="res://assert/MasterSimple.png" id="1_ttwn4"]
 [ext_resource type="PackedScene" uid="uid://can2jpgtatpm8" path="res://buildings/buildings00.tscn" id="2_ddme1"]
 [ext_resource type="PackedScene" uid="uid://dgnp1qpuxamnq" path="res://buildings/buildings_01.tscn" id="3_c088e"]
-[ext_resource type="PackedScene" uid="uid://c5h67c3hlorvp" path="res://button/basicButton.tscn" id="4_hdsor"]
-[ext_resource type="PackedScene" uid="uid://cj7k0s6r4v6ig" path="res://character/player.tscn" id="5_wh5om"]
+[ext_resource type="Script" path="res://scripts/MoveButton.gd" id="6_4xrey"]
+[ext_resource type="PackedScene" uid="uid://cj7k0s6r4v6ig" path="res://character/player.tscn" id="6_abq8t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgjpr"]
 texture = ExtResource("1_ttwn4")
@@ -173,9 +173,17 @@ position = Vector2(85, -86)
 [node name="buildings3" parent="Node" instance=ExtResource("2_ddme1")]
 position = Vector2(-173, 82)
 
-[node name="button" parent="." instance=ExtResource("4_hdsor")]
-position = Vector2(-510, 88)
+[node name="MoveButton" type="Button" parent="."]
+offset_left = -484.0
+offset_top = 222.0
+offset_right = -476.0
+offset_bottom = 230.0
+text = "11111"
+script = ExtResource("6_4xrey")
+player = NodePath("../player")
+move_to_position = Vector2(500, 500)
 
-[node name="player" parent="." instance=ExtResource("5_wh5om")]
-position = Vector2(-729, -433)
-scale = Vector2(3.36745, 2.91455)
+[node name="player" parent="." instance=ExtResource("6_abq8t")]
+position = Vector2(-42, 104)
+
+[connection signal="pressed" from="MoveButton" to="MoveButton" method="_on_pressed"]
