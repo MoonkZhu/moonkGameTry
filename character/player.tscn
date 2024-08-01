@@ -18,7 +18,7 @@ _data = {
 script = ExtResource("1_3s4xl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(5.96046e-08, 1)
+position = Vector2(3.55271e-15, 7)
 scale = Vector2(1.07701, -0.832593)
 shape = SubResource("CircleShape2D_h0xrg")
 
@@ -27,10 +27,8 @@ libraries = {
 "": SubResource("AnimationLibrary_563fd")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_fygvx")
-hframes = 8
-vframes = 2
-frame = 15
+hframes = 4
 region_enabled = true
-region_rect = Rect2(0, 64, 256, 64)
+region_rect = Rect2(0, 0, 128, 32)

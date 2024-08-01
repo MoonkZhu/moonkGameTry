@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2cxeu2065gu4"]
+
+[ext_resource type="Script" path="res://scripts/MoveButton.gd" id="1_4p0pp"]
+
+[node name="MoveButton" type="Button"]
+offset_left = -503.0
+offset_top = -68.0
+offset_right = -449.0
+offset_bottom = -37.0
+script = ExtResource("1_4p0pp")
+player = NodePath("../player")
+move_to_position = Vector2(10, 9.165)
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

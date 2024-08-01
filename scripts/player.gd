@@ -5,8 +5,8 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = 0
 # Movement speed for non-jump actions
 @export var speed: float = 200.0
 
@@ -25,7 +25,9 @@ func _physics_process(delta):
 	# 检查输入来更新速度
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
+		$Sprite2D.flip_h = false
 	if Input.is_action_pressed("ui_left"):
+		$Sprite2D.flip_h = true
 		velocity.x -= 1
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
@@ -49,14 +51,21 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# 移动玩家
+	# 设置速度并调用 move_and_slide
+	set_velocity(velocity)
 	move_and_slide()
 
-	# 如果目标位置与当前位置不同，则移动到目标位置
-	if position != target_position:
-		move_to_target(delta)
-
-func move_to_target(delta):
-	var direction = (target_position - position).normalized()
-	velocity = direction * speed
-	move_and_slide()
+func set_target_position(position: Vector2):
+	target_position = position
+	
+func _process(delta: float):
+	if target_position:
+		var direction = (target_position - global_position).normalized()
+		velocity = direction * speed
+		move_and_slide()
+		
+		# Check if the player has reached the target position
+		if global_position.distance_to(target_position) < speed * delta:
+			# Stop moving when close enough to target
+			velocity = Vector2.ZERO
+			target_position = Vector2.ZERO
