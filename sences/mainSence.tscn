@@ -1,0 +1,159 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhx5hlf512dyk"]
+
+[ext_resource type="Animation" uid="uid://vet3yllrspi0" path="res://animation/idel.res" id="1_lsy75"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_reh18"]
+[ext_resource type="Animation" uid="uid://cuhxf03hcb0wt" path="res://animation/run.res" id="2_tudxw"]
+[ext_resource type="Texture2D" uid="uid://b1ebpmkd2jg2m" path="res://brackeys_platformer_assets/sprites/knight.png" id="3_k15eh"]
+[ext_resource type="PackedScene" uid="uid://can2jpgtatpm8" path="res://buildings/buildings00.tscn" id="4_6ufer"]
+[ext_resource type="PackedScene" uid="uid://b2cxeu2065gu4" path="res://button/move_button.tscn" id="5_2x44n"]
+[ext_resource type="PackedScene" uid="uid://b625o2afcimuf" path="res://buildings/buildingEnter.tscn" id="6_drede"]
+[ext_resource type="Script" path="res://scripts/ExitPoint.gd" id="8_yndmp"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_563fd"]
+_data = {
+"idel": ExtResource("1_lsy75"),
+"run": ExtResource("2_tudxw")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pbg0x"]
+radius = 5.57098
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8pvq"]
+
+[node name="game" type="Node"]
+
+[node name="mainSence" type="Node2D" parent="."]
+
+[node name="player" type="CharacterBody2D" parent="mainSence"]
+script = ExtResource("1_reh18")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="mainSence/player"]
+libraries = {
+"": SubResource("AnimationLibrary_563fd")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="mainSence/player"]
+texture = ExtResource("3_k15eh")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mainSence/player"]
+position = Vector2(0, 7)
+scale = Vector2(0.99701, -0.832593)
+shape = SubResource("CircleShape2D_pbg0x")
+
+[node name="buildings" type="Node" parent="mainSence"]
+
+[node name="buildings" parent="mainSence/buildings" instance=ExtResource("4_6ufer")]
+position = Vector2(-400, -150)
+
+[node name="MoveButton" parent="mainSence/buildings/buildings" instance=ExtResource("5_2x44n")]
+offset_left = -30.0
+offset_top = 5.0
+offset_right = 24.0
+offset_bottom = 36.0
+player = NodePath("../../../player")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" parent="mainSence/buildings/buildings" instance=ExtResource("6_drede")]
+
+[node name="buildings2" parent="mainSence/buildings" instance=ExtResource("4_6ufer")]
+position = Vector2(-178, -150)
+
+[node name="MoveButton" parent="mainSence/buildings/buildings2" instance=ExtResource("5_2x44n")]
+offset_left = -30.0
+offset_top = 5.0
+offset_right = 24.0
+offset_bottom = 36.0
+player = NodePath("../../../player")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" parent="mainSence/buildings/buildings2" instance=ExtResource("6_drede")]
+
+[node name="buildings3" parent="mainSence/buildings" instance=ExtResource("4_6ufer")]
+position = Vector2(50, -150)
+
+[node name="MoveButton" parent="mainSence/buildings/buildings3" instance=ExtResource("5_2x44n")]
+offset_left = -30.0
+offset_top = 5.0
+offset_right = 24.0
+offset_bottom = 36.0
+player = NodePath("../../../player")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" parent="mainSence/buildings/buildings3" instance=ExtResource("6_drede")]
+
+[node name="buildings4" parent="mainSence/buildings" instance=ExtResource("4_6ufer")]
+position = Vector2(-400, 107)
+
+[node name="MoveButton" parent="mainSence/buildings/buildings4" instance=ExtResource("5_2x44n")]
+offset_left = -30.0
+offset_top = 5.0
+offset_right = 24.0
+offset_bottom = 36.0
+player = NodePath("../../../player")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" parent="mainSence/buildings/buildings4" instance=ExtResource("6_drede")]
+
+[node name="buildings5" parent="mainSence/buildings" instance=ExtResource("4_6ufer")]
+position = Vector2(-179, 107)
+
+[node name="MoveButton" parent="mainSence/buildings/buildings5" instance=ExtResource("5_2x44n")]
+offset_left = -30.0
+offset_top = 5.0
+offset_right = 24.0
+offset_bottom = 36.0
+player = NodePath("../../../player")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" parent="mainSence/buildings/buildings5" instance=ExtResource("6_drede")]
+
+[node name="buildings6" parent="mainSence/buildings" instance=ExtResource("4_6ufer")]
+position = Vector2(51, 107)
+
+[node name="MoveButton" parent="mainSence/buildings/buildings6" instance=ExtResource("5_2x44n")]
+offset_left = -30.0
+offset_top = 5.0
+offset_right = 24.0
+offset_bottom = 36.0
+player = NodePath("../../../player")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" parent="mainSence/buildings/buildings6" instance=ExtResource("6_drede")]
+
+[node name="Camera2D" type="Camera2D" parent="mainSence"]
+
+[node name="exit" type="Node" parent="mainSence"]
+
+[node name="leftExit" type="Area2D" parent="mainSence/exit"]
+position = Vector2(-555, -1)
+scale = Vector2(1.98, 4.98286)
+script = ExtResource("8_yndmp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mainSence/exit/leftExit"]
+shape = SubResource("RectangleShape2D_n8pvq")
+
+[node name="rightExit4" type="Area2D" parent="mainSence/exit"]
+position = Vector2(552, -1)
+scale = Vector2(1.98, 4.98286)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mainSence/exit/rightExit4"]
+shape = SubResource("RectangleShape2D_n8pvq")
+
+[node name="downExit2" type="Area2D" parent="mainSence/exit"]
+position = Vector2(1, 303)
+scale = Vector2(5.82, 2.02286)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mainSence/exit/downExit2"]
+shape = SubResource("RectangleShape2D_n8pvq")
+
+[node name="topExit3" type="Area2D" parent="mainSence/exit"]
+position = Vector2(1, -303)
+scale = Vector2(5.82, 2.02286)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mainSence/exit/topExit3"]
+shape = SubResource("RectangleShape2D_n8pvq")
+
+[connection signal="body_entered" from="mainSence/exit/leftExit" to="mainSence/exit/leftExit" method="_on_body_entered"]

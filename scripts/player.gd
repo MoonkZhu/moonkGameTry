@@ -20,7 +20,7 @@ func _ready():
 	anim_player = $AnimationPlayer
 
 func _physics_process(delta):
-	var velocity = Vector2.ZERO
+	velocity = Vector2.ZERO
 
 	# 检查输入来更新速度
 	if Input.is_action_pressed("ui_right"):
@@ -55,8 +55,8 @@ func _physics_process(delta):
 	set_velocity(velocity)
 	move_and_slide()
 
-func set_target_position(position: Vector2):
-	target_position = position
+func set_target_position(GOposition: Vector2):
+	target_position = GOposition
 	
 func _process(delta: float):
 	if target_position:

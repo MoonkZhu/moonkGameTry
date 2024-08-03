@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc7tr2v1vx355"]
+
+[ext_resource type="PackedScene" uid="uid://b625o2afcimuf" path="res://buildings/buildingEnter.tscn" id="1_sqknv"]
+[ext_resource type="Script" path="res://buildings/buildingEnter01.gd" id="2_7a66f"]
+
+[node name="buildingEnter01" instance=ExtResource("1_sqknv")]
+script = ExtResource("2_7a66f")

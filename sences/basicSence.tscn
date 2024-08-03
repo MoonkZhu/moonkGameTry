@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://22pp8w4qkqgq"]
+[gd_scene load_steps=11 format=3 uid="uid://22pp8w4qkqgq"]
 
 [ext_resource type="Texture2D" uid="uid://d0a5smwyul6jb" path="res://assert/MasterSimple.png" id="1_ttwn4"]
 [ext_resource type="PackedScene" uid="uid://can2jpgtatpm8" path="res://buildings/buildings00.tscn" id="2_ddme1"]
 [ext_resource type="PackedScene" uid="uid://b2cxeu2065gu4" path="res://button/move_button.tscn" id="3_65ay0"]
 [ext_resource type="PackedScene" uid="uid://dgnp1qpuxamnq" path="res://buildings/buildings_01.tscn" id="3_c088e"]
+[ext_resource type="PackedScene" uid="uid://b625o2afcimuf" path="res://buildings/buildingEnter.tscn" id="4_rserx"]
 [ext_resource type="PackedScene" uid="uid://cj7k0s6r4v6ig" path="res://character/player.tscn" id="6_abq8t"]
+[ext_resource type="PackedScene" uid="uid://bc7tr2v1vx355" path="res://buildings/buildingEnter01.tscn" id="6_brci7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgjpr"]
 texture = ExtResource("1_ttwn4")
@@ -141,6 +143,9 @@ texture = ExtResource("1_ttwn4")
 [sub_resource type="TileSet" id="TileSet_h2fan"]
 sources/0 = SubResource("TileSetAtlasSource_pgjpr")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsew5"]
+size = Vector2(80, 46.5)
+
 [node name="basicSence" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -165,6 +170,8 @@ offset_right = 24.0
 offset_bottom = 36.0
 player = NodePath("../../../player")
 
+[node name="Area2D" parent="Node/buildings" instance=ExtResource("4_rserx")]
+
 [node name="buildings01" parent="Node" instance=ExtResource("3_c088e")]
 position = Vector2(-467, 86)
 
@@ -174,6 +181,8 @@ offset_top = -3.0
 offset_right = 20.0
 offset_bottom = 28.0
 player = NodePath("../../../player")
+
+[node name="buildingEnter01" parent="Node/buildings01" instance=ExtResource("6_brci7")]
 
 [node name="buildings2" parent="Node" instance=ExtResource("2_ddme1")]
 position = Vector2(-170, -83)
@@ -185,6 +194,13 @@ offset_right = 27.0
 offset_bottom = 36.0
 player = NodePath("../../../player")
 
+[node name="Area2D" type="Area2D" parent="Node/buildings2"]
+position = Vector2(0, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/buildings2/Area2D"]
+position = Vector2(0, 18.75)
+shape = SubResource("RectangleShape2D_dsew5")
+
 [node name="buildings02" parent="Node" instance=ExtResource("3_c088e")]
 position = Vector2(83, 82)
 
@@ -194,6 +210,13 @@ offset_top = -3.0
 offset_right = 19.0
 offset_bottom = 28.0
 player = NodePath("../../../player")
+
+[node name="Area2D" type="Area2D" parent="Node/buildings02"]
+position = Vector2(-8, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/buildings02/Area2D"]
+position = Vector2(0, 18.75)
+shape = SubResource("RectangleShape2D_dsew5")
 
 [node name="buildings03" parent="Node" instance=ExtResource("3_c088e")]
 position = Vector2(85, -86)
@@ -205,6 +228,13 @@ offset_right = 18.0
 offset_bottom = 31.0
 player = NodePath("../../../player")
 
+[node name="Area2D" type="Area2D" parent="Node/buildings03"]
+position = Vector2(-8, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/buildings03/Area2D"]
+position = Vector2(0, 18.75)
+shape = SubResource("RectangleShape2D_dsew5")
+
 [node name="buildings3" parent="Node" instance=ExtResource("2_ddme1")]
 position = Vector2(-173, 82)
 
@@ -214,6 +244,13 @@ offset_top = 6.0
 offset_right = 25.0
 offset_bottom = 37.0
 player = NodePath("../../../player")
+
+[node name="Area2D" type="Area2D" parent="Node/buildings3"]
+position = Vector2(1, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/buildings3/Area2D"]
+position = Vector2(0, 18.75)
+shape = SubResource("RectangleShape2D_dsew5")
 
 [node name="player" parent="." instance=ExtResource("6_abq8t")]
 position = Vector2(-140, 227)

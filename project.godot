@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="test"
-run/main_scene="res://sences/basicSence.tscn"
+run/main_scene="res://character/player.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
 [rendering]
